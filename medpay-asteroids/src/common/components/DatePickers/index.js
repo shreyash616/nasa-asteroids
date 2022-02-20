@@ -1,7 +1,6 @@
 import { DateInputWrapper, DatePickerWrapper, DateTextBox, SearchButton } from './styles'
 import { DatePicker } from '@mui/lab'
 import { TextField } from '@mui/material'
-import { useState } from 'react'
 
 import { get } from '../../utils/utils'
 
