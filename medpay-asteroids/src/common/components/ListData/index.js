@@ -40,8 +40,6 @@ const DataList = ({
     handleSearch
 }) => {
 
-    console.log(data)
-
     const getListItemProps = data => ({
         title: get(data, 'name'),
         subtitle: `Closest approach date - ${new Date(get(data, 'closestApproachDate')).toDateString()}`,

@@ -12,9 +12,7 @@ const DialogModal = ({
     const modalRef = useRef()
 
     useEffect(() => {
-        if (modalRef.current) {
-            modalRef.current.style.top = '36px';
-        }
+        if (modalRef.current) modalRef.current.style.top = '36px';
     }, [])
 
     return <ModalBackdrop onClick={() => closeModal()}>

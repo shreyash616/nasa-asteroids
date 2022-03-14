@@ -107,7 +107,7 @@ function App() {
       />
     </AppWrapper>
     {!!modalId && <DialogModal
-      title={modalId.title}
+      title={get(modalId, 'title')}
       closeModal={handleModalId}
     >
       {getModalBody()}

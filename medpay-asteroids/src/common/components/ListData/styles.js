@@ -36,6 +36,7 @@ export const ListItemWrapper = styled.div`
     justify-content: space-between;
     :hover, :active {
         background: ${styleVals.colors.hoverBlue};
+        cursor: pointer;
     }
 `
 export const ListDetailsWrapper = styled.div`
