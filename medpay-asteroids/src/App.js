@@ -25,8 +25,8 @@ function App() {
   const [modalId, setModalId] = useState(null)
 
   const [dates, setDates] = useState({
-    from: '',
-    to: ''
+    from: new Date(),
+    to: new Date()
   })
 
   useEffect(() => {
@@ -98,7 +98,7 @@ function App() {
   return <GlobalContextProvider>
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <AppWrapper>
-        <AppHeading><h1>Search for asteroids!</h1></AppHeading>
+        <AppHeading><h1>The Search for Near Earth Objects!</h1></AppHeading>
         <DataList
           handleSearch={handleSearchAsteroids}
           handleListItemClick={handleModalId}

@@ -8,6 +8,10 @@ export const AppWrapper = styled.div`
     overflow: hidden;
     align-items: center;
     padding: 24px;
+    background-image: url('https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?cs=srgb&dl=pexels-philippe-donn-1169754.jpg&fm=jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     > div {
         width: 100%;
         max-width: 900px;
@@ -15,6 +19,7 @@ export const AppWrapper = styled.div`
 `
 export const AppHeading = styled.div`
     width: 100%;
+    color: whitesmoke;
     > h1 {
         margin: 0 0 24px;
         padding: 0;

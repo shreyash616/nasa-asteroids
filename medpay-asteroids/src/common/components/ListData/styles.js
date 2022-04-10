@@ -4,8 +4,9 @@ import styleVals from '../../utils/styles';
 export const ListWithInput = styled.div`
     border: 1px solid ${styleVals.colors.borderColor};
     border-radius: 5px;
-    padding: 12px;
-    
+    padding: 16px 12px;
+    background:  #222222;
+    color: whitesmoke;
 `
 export const ListWrapper = styled.div`
     >div {

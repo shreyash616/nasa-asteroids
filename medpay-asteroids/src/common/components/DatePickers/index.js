@@ -47,12 +47,14 @@ const DateInputs = ({
             <DatePicker
                 label={'From'}
                 value={dates.from}
+                inputFormat="dd-MMM-yyyy"
                 onChange={value => handleDate(value, 'from')}
                 renderInput={(params) => <DateTextBox><TextField {...params} /></DateTextBox>}
             />
             <DatePicker
                 label={'To'}
                 value={dates.to}
+                inputFormat="dd-MMM-yyyy"
                 onChange={value => handleDate(value, 'to')}
                 renderInput={(params) => <DateTextBox><TextField {...params} /></DateTextBox>}
             />
