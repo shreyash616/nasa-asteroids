@@ -6,11 +6,15 @@ body {
 }
 
 body fieldset {
-  border-color: #979797 !important;
+  border-color: whitesmoke !important;
 }
 
 body label {
-  color: #979797 !important;
+  color: whitesmoke !important;
+}
+
+body input {
+  color: whitesmoke !important;
 }
 
 code {

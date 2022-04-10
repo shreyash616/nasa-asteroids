@@ -4,7 +4,7 @@ import styleVals from '../../utils/styles';
 export const ListWithInput = styled.div`
     border: 1px solid ${styleVals.colors.borderColor};
     border-radius: 5px;
-    padding: 16px 12px;
+    padding: 12px 12px 16px;
     background:  #222222;
     color: whitesmoke;
 `
@@ -12,7 +12,7 @@ export const ListWrapper = styled.div`
     >div {
         max-height: 70vh;
         @media ${styleVals.breakpoints.sm}, ${styleVals.breakpoints.xs} {
-            max-height: 55vh;
+            max-height: 50vh;
         }
         overflow: auto;
         > div:last-child {

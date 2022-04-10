@@ -25,7 +25,8 @@ export const ModalContainer = styled.div`
     border-radius: 5px;
     padding: 16px;
     margin: 0 12px;
-    background: white;
+    background: #222222;
+    color: whitesmoke;
 `
 export const ModalHeader = styled.div`
     display: flex;
