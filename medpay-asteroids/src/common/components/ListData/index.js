@@ -46,7 +46,8 @@ const DataList = ({
         handleClick: () => handleListItemClick({
             id: get(data, 'id'),
             title: get(data, 'name'),
-            closestApproachDate: get(data, 'closestApproachDate')
+            closestApproachDate: get(data, 'closestApproachDate'),
+            missDistance: get(data, 'missDistance')
         })
     })
 
@@ -57,7 +58,7 @@ const DataList = ({
             : <ListWrapper>
                 <ListHeading>{listHeading}</ListHeading>
                 <div>
-                    {data.map(itemData => <ListItem {...getListItemProps(itemData)} />)}
+                    {data.map((itemData, itemDataKey) => <ListItem key={itemDataKey} {...getListItemProps(itemData)} />)}
                 </div>
             </ListWrapper>}
     </ListWithInput>

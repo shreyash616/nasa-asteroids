@@ -15,21 +15,30 @@ const sortAsteroidsByClosestDate = (data) => {
 }
 
 const getClosestApproachDate = (asteroidData) => {
-    const approachData = get(asteroidData, 'close_approach_data', []).map(data => get(data, 'close_approach_date', ''))
-    approachData.sort((date1, date2) => {
+    const approachData = get(asteroidData, 'close_approach_data', [])
+    approachData.sort((data1, data2) => {
+        const date1 = get(data1, 'close_approach_date', '')
+        const date2 = get(data2, 'close_approach_date', '')
         const currentDate = new Date()
         const distancea = Math.abs(currentDate - new Date(date1));
         const distanceb = Math.abs(currentDate - new Date(date2));
         return distancea - distanceb;
     })
-    return approachData[0]
+    return {
+        date: get(approachData[0], 'close_approach_date', ''),
+        missDistance: get(approachData[0], 'miss_distance.kilometers', '')
+    }
 }
 
 const sortAsteroidDataByClosestDate = data => {
-    return sortAsteroidsByClosestDate(data.map(datum => ({
-        ...datum,
-        closestApproachDate: getClosestApproachDate(datum)
-    })))
+    return sortAsteroidsByClosestDate(data.map(datum => {
+        const closestApproachData = getClosestApproachDate(datum)
+        return {
+            ...datum,
+            closestApproachDate: closestApproachData.date,
+            missDistance: closestApproachData.missDistance
+        }
+    }))
 }
 
 const formatDate = (date) => {
@@ -50,7 +59,7 @@ const detailsHeadings = [
     {
         'id': 'NEO reference ID',
         'estimated_diameter': 'Estimated diameter',
-        'absolute_magnitude_h': 'Absolute magnitude',
+        'missDistance': 'Fly-by distance',
     },
     {
         'closestApproachDate': 'Closest approach date',
@@ -70,7 +79,7 @@ const getSectionData = (data, isFirstSection) => {
             } else if (key === 'estimated_diameter') {
                 value = `${get(data, 'estimated_diameter.kilometers.estimated_diameter_max', 0).toFixed(2)} kms`
             } else {
-                value = get(data, 'absolute_magnitude_h', 0)
+                value = `${(Number(get(data, 'missDistance', ''))/1000000).toFixed(2)} million kms`
             }
             return {
                 heading,

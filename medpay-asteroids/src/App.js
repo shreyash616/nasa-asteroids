@@ -60,6 +60,7 @@ function App() {
       getAsteroidData(asteroidId).then(data => {
         setModalData({
           ...data,
+          missDistance: get(modalId, 'missDistance'),
           closestApproachDate: get(modalId, 'closestApproachDate')
         })
       }).catch(err => {
