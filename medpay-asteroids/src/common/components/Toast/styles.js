@@ -11,7 +11,7 @@ export const ToastContainer = styled.div`
 `
 
 export const ToastMessage = styled.div`
-    background: rgba(0, 0, 0, 150);
+    background: #e30000;
     padding: 12px 16px;
     border-radius: 20px;
     color: white;

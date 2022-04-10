@@ -2,26 +2,37 @@ import { useEffect, useState } from "react"
 import { ToastContainer, ToastMessage } from "./styles"
 
 
-const Toast = ({message}) => {
+const Toast = ({ message }) => {
 
-    const [toastShown, setToastShown] = useState(message)
+    const [toastShown, setToastShown] = useState({
+        message,
+        show: false
+    })
 
     useEffect(() => {
-        message && setToastShown(message)
+        if(message) {
+            setToastShown({
+                message,
+                show: true
+            })
+        }
     }, [message])
 
     useEffect(() => {
-        if(!!toastShown) {
+        if (toastShown.show) {
             setTimeout(() => {
-                setToastShown('')
+                setToastShown({
+                    ...toastShown,
+                    show: false
+                })
             }, 3000)
         }
-    }, [!!toastShown])
+    }, [toastShown.show])
 
     return <ToastContainer>
-        <ToastMessage toastShown={toastShown}>{message}</ToastMessage>
+        <ToastMessage toastShown={toastShown.show}>{toastShown.message}</ToastMessage>
     </ToastContainer>
-    
+
 }
 
 export default Toast

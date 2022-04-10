@@ -9,6 +9,9 @@ export const GlobalContextProvider = ({ children }) => {
 
     const showToast = message => {
         setToastMessage(message)
+        setTimeout(() => {
+            setToastMessage('')
+        })
     }
 
     return <GlobalContext.Provider value={{

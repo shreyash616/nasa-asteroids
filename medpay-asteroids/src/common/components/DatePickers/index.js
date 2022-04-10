@@ -6,6 +6,10 @@ import { get } from '../../utils/utils'
 import { useEffect, useState } from 'react'
 import { useGlobalContext } from '../../../globalContext'
 
+const DatePickerConstants = {
+    FROM_TO_BEFORE_ERROR: 'From date should be on or before the to date. Please check.'
+}
+
 const DateInputs = ({
     dates,
     setDates,
@@ -22,7 +26,7 @@ const DateInputs = ({
             const toDateEpoch = dates.to.getTime()
             if (fromDateEpoch > toDateEpoch) {
                 setDateError(true)
-                showToast('From date should be on or before the to date. Please check.')
+                showToast(DatePickerConstants.FROM_TO_BEFORE_ERROR)
             } else {
                 setDateError(false)
             }
