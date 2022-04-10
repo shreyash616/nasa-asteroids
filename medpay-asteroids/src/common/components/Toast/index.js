@@ -25,7 +25,7 @@ const Toast = ({ message }) => {
                     ...toastShown,
                     show: false
                 })
-            }, 3000)
+            }, 5000)
         }
     }, [toastShown.show])
 
