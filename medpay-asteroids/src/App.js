@@ -15,6 +15,7 @@ import {
 import { AppHeading, AppWrapper, DataWrapper, DetailText, DetailTitle, DetailWrapper, SectionWrapper } from './App.style';
 import { formatDate, sortAsteroidDataByClosestDate } from './common/utils/utils';
 import DialogModal from './common/components/DialogModal';
+import { GlobalContextProvider } from './globalContext';
 
 function App() {
 
@@ -76,7 +77,7 @@ function App() {
       return <DataWrapper>
         <SectionWrapper>
           {firstSectionData.map(data => {
-            return <DetailWrapper>
+            return <DetailWrapper key={data.heading}>
               <DetailTitle>{data.heading}</DetailTitle>
               <DetailText>{data.value}</DetailText>
             </DetailWrapper>
@@ -84,7 +85,7 @@ function App() {
         </SectionWrapper>
         <SectionWrapper>
           {secondSectionData.map(data => {
-            return <DetailWrapper>
+            return <DetailWrapper key={data.heading}>
               <DetailTitle>{data.heading}</DetailTitle>
               <DetailText>{data.value}</DetailText>
             </DetailWrapper>
@@ -94,26 +95,28 @@ function App() {
     }
   }
 
-  return <LocalizationProvider dateAdapter={AdapterDateFns}>
-    <AppWrapper>
-      <AppHeading><h1>Search for asteroids!</h1></AppHeading>
-      <DataList
-        handleSearch={handleSearchAsteroids}
-        handleListItemClick={handleModalId}
-        listHeading='Asteroids'
-        loading={loading}
-        dates={dates}
-        setDates={setDates}
-        data={defaultList}
-      />
-    </AppWrapper>
-    {!!modalId && <DialogModal
-      title={get(modalId, 'title')}
-      closeModal={handleModalId}
-    >
-      {getModalBody()}
-    </DialogModal>}
-  </LocalizationProvider>
+  return <GlobalContextProvider>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <AppWrapper>
+        <AppHeading><h1>Search for asteroids!</h1></AppHeading>
+        <DataList
+          handleSearch={handleSearchAsteroids}
+          handleListItemClick={handleModalId}
+          listHeading='Asteroids'
+          loading={loading}
+          dates={dates}
+          setDates={setDates}
+          data={defaultList}
+        />
+      </AppWrapper>
+      {!!modalId && <DialogModal
+        title={get(modalId, 'title')}
+        closeModal={handleModalId}
+      >
+        {getModalBody()}
+      </DialogModal>}
+    </LocalizationProvider>
+  </GlobalContextProvider>
 }
 
 export default App;

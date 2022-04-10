@@ -3,6 +3,8 @@ import { DatePicker } from '@mui/lab'
 import { TextField } from '@mui/material'
 
 import { get } from '../../utils/utils'
+import { useEffect, useState } from 'react'
+import { useGlobalContext } from '../../../globalContext'
 
 const DateInputs = ({
     dates,
@@ -10,14 +12,31 @@ const DateInputs = ({
     handleSearch
 }) => {
 
+    const { showToast } = useGlobalContext()
+
+    const [dateError, setDateError] = useState(!get(dates, 'from') || !get(dates, 'to'))
+
+    useEffect(() => {
+        if (dates.from && dates.to) {
+            const fromDateEpoch = dates.from.getTime()
+            const toDateEpoch = dates.to.getTime()
+            if (fromDateEpoch > toDateEpoch) {
+                setDateError(true)
+                showToast('From date should be on or before the to date. Please check.')
+            } else {
+                setDateError(false)
+            }
+        } else {
+            setDateError(true)
+        }
+    }, [dates])
+
     const handleDate = (value, selector) => {
         setDates({
             ...dates,
             [selector]: value
         })
     }
-
-    const searchDisabled = !get(dates, 'from') || !get(dates, 'to')
 
     return <DateInputWrapper>
         <DatePickerWrapper>
@@ -34,7 +53,7 @@ const DateInputs = ({
                 renderInput={(params) => <DateTextBox><TextField {...params} /></DateTextBox>}
             />
         </DatePickerWrapper>
-        <SearchButton disabled={searchDisabled} onClick={() => !searchDisabled && handleSearch()}>Search</SearchButton>
+        <SearchButton disabled={dateError} onClick={() => !dateError && handleSearch()}>Search</SearchButton>
     </DateInputWrapper>
 }
 
